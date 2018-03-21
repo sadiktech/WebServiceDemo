@@ -13,7 +13,7 @@ http://www.springframework.org/schema/beans http://www.springframework.org/schem
 http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
 http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-current.xsd">
 	<ws:consumer-config name="Web_Service_Consumer" wsdlLocation="wsdl/HelloService.wsdl" service="Hello_Service" port="Hello_Port" serviceAddress="http://cal-espace-79:8088/SayHello/" doc:name="Web Service Consumer"/>
-    <http:listener-config name="sadikwebservice-httpListenerConfig" host="${host}" port="${port}" doc:name="HTTP Listener Configuration" /> 
+    <http:listener-config name="httpListenerConfig" host="${host}" port="${port}" doc:name="HTTP Listener Configuration" /> 
     <context:property-placeholder location="configurationFiles\config.properties"/>
     <choice-exception-strategy name="globalChoiceException" >
             <catch-exception-strategy when="#[exception.causeMatches('org.mule.api.MessagingException')]" doc:name="Catch Exception Strategy">

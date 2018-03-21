@@ -7,18 +7,18 @@ http://www.mulesoft.org/schema/mule/ws http://www.mulesoft.org/schema/mule/ws/cu
 http://www.mulesoft.org/schema/mule/ee/dw http://www.mulesoft.org/schema/mule/ee/dw/current/dw.xsd
 http://www.mulesoft.org/schema/mule/ee/tracking http://www.mulesoft.org/schema/mule/ee/tracking/current/mule-tracking-ee.xsd">
    
-    <apikit:config name="sadikwebservice-config" raml="sadikwebservice.raml" consoleEnabled="false" doc:name="Router"/>
+    <apikit:config name="sadikwebservice-config" raml="sadikwebservice.raml" consoleEnabled="false" doc:name="Router" keepRamlBaseUri="false"/>
     
     <flow name="flow-main">
-        <http:listener config-ref="sadikwebservice-httpListenerConfig" path="/api/*" doc:name="HTTP" allowedMethods="GET"/>
+        <http:listener config-ref="httpListenerConfig" path="/api/*" doc:name="HTTP" allowedMethods="GET"/>
         <apikit:router config-ref="sadikwebservice-config" doc:name="APIkit Router"/>
         <exception-strategy ref="globalChoiceException" doc:name="Reference Exception Strategy"/> 
     </flow>
     <flow name="flow-console">
-        <http:listener config-ref="sadikwebservice-httpListenerConfig" path="/console/*" doc:name="HTTP"/>
+        <http:listener config-ref="httpListenerConfig" path="/console/*" doc:name="HTTP"/>
         <apikit:console config-ref="sadikwebservice-config" doc:name="APIkit Console"/>
     </flow>
-    <flow name="get:/getHello:niit-config">
+    <flow name="get:/getHello:sadikwebservice-config">
         <flow-ref name="webService_flow" doc:name="Flow Reference"/>
 
     </flow>
@@ -32,6 +32,7 @@ http://www.mulesoft.org/schema/mule/ee/tracking http://www.mulesoft.org/schema/m
 	firstName: inboundProperties."http.query.params".user
 }]]></dw:set-payload>
         </dw:transform-message>
+        <logger message="-------------------------------------   #[payload]" level="INFO" doc:name="Logger"/>
         <ws:consumer config-ref="Web_Service_Consumer" operation="sayHello" doc:name="Web Service Consumer"/>
 
         <dw:transform-message doc:name="Transform Message" metadata:id="0aadb585-e6e6-41fa-80c1-137bdf9a92e6">
