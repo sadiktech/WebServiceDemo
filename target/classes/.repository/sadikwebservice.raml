@@ -1,0 +1,18 @@
+#%RAML 1.0
+baseUri: https://mocksvc.mulesoft.com/mocks/db0a7ef6-ea25-4a49-8221-21be456dfde0 # 
+title: SadikWebService
+
+
+/getHello:
+  get:
+    queryParameters: 
+      user: string
+    responses: 
+      200:
+        body: 
+          application/json:
+            example: | 
+              { 
+                "userName":"John" 
+              }
+

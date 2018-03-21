@@ -1,0 +1,98 @@
+<metadata__catalog__entry>
+  <version>5.2.0.0</version>
+  <types class="tree-map">
+    <entry>
+      <org.mule.common.metadata.DefaultMetaDataKey>
+        <id>firstName</id>
+        <displayName>firstName</displayName>
+        <category>DEFAULT</category>
+        <metaDataKeyPropertiesManager>
+          <properties>
+            <org.mule.common.metadata.key.property.dsql.DsqlFromMetaDataKeyProperty/>
+          </properties>
+        </metaDataKeyPropertiesManager>
+      </org.mule.common.metadata.DefaultMetaDataKey>
+      <org.mule.common.metadata.DefaultXmlMetaDataModel>
+        <dataType>XML</dataType>
+        <metaDataModelPropertiesManager>
+          <properties>
+            <org.mule.common.metadata.property.TextBasedExampleMetaDataModelProperty/>
+            <org.mule.common.metadata.property.xml.XsiTypeMetaDataProperty>
+              <name>
+                <namespaceURI>http://www.w3.org/2001/XMLSchema</namespaceURI>
+                <localPart>string</localPart>
+                <prefix></prefix>
+              </name>
+            </org.mule.common.metadata.property.xml.XsiTypeMetaDataProperty>
+            <org.mule.common.metadata.property.StructureIdentifierMetaDataModelProperty>
+              <metaDataKey class="org.mule.common.metadata.DefaultMetaDataKey" reference="../../../../../org.mule.common.metadata.DefaultMetaDataKey"/>
+              <derivedStructure>false</derivedStructure>
+              <generatedStructure>false</generatedStructure>
+            </org.mule.common.metadata.property.StructureIdentifierMetaDataModelProperty>
+          </properties>
+        </metaDataModelPropertiesManager>
+        <fields/>
+        <rootElement>
+          <namespaceURI></namespaceURI>
+          <localPart>firstName</localPart>
+          <prefix></prefix>
+        </rootElement>
+        <schemas class="org.mule.common.metadata.StringBasedSchemaProvider">
+          <schemas/>
+          <encoding>windows-1252</encoding>
+          <baseUri>file:/D:/Mule-Study/part-time-project/WebServiceDemo/src/main/resources/wsdl/HelloService.wsdl</baseUri>
+        </schemas>
+        <namespaceManager>
+          <namespacePrefix class="tree-map"/>
+        </namespaceManager>
+      </org.mule.common.metadata.DefaultXmlMetaDataModel>
+    </entry>
+    <entry>
+      <org.mule.common.metadata.DefaultMetaDataKey>
+        <id>greeting</id>
+        <displayName>greeting</displayName>
+        <category>DEFAULT</category>
+        <metaDataKeyPropertiesManager>
+          <properties>
+            <org.mule.common.metadata.key.property.dsql.DsqlFromMetaDataKeyProperty/>
+          </properties>
+        </metaDataKeyPropertiesManager>
+      </org.mule.common.metadata.DefaultMetaDataKey>
+      <org.mule.common.metadata.DefaultXmlMetaDataModel>
+        <dataType>XML</dataType>
+        <metaDataModelPropertiesManager>
+          <properties>
+            <org.mule.common.metadata.property.TextBasedExampleMetaDataModelProperty/>
+            <org.mule.common.metadata.property.xml.XsiTypeMetaDataProperty>
+              <name>
+                <namespaceURI>http://www.w3.org/2001/XMLSchema</namespaceURI>
+                <localPart>string</localPart>
+                <prefix></prefix>
+              </name>
+            </org.mule.common.metadata.property.xml.XsiTypeMetaDataProperty>
+            <org.mule.common.metadata.property.StructureIdentifierMetaDataModelProperty>
+              <metaDataKey class="org.mule.common.metadata.DefaultMetaDataKey" reference="../../../../../org.mule.common.metadata.DefaultMetaDataKey"/>
+              <derivedStructure>false</derivedStructure>
+              <generatedStructure>false</generatedStructure>
+            </org.mule.common.metadata.property.StructureIdentifierMetaDataModelProperty>
+          </properties>
+        </metaDataModelPropertiesManager>
+        <fields/>
+        <rootElement>
+          <namespaceURI></namespaceURI>
+          <localPart>greeting</localPart>
+          <prefix></prefix>
+        </rootElement>
+        <schemas class="org.mule.common.metadata.StringBasedSchemaProvider">
+          <schemas/>
+          <encoding reference="../../../../entry/org.mule.common.metadata.DefaultXmlMetaDataModel/schemas/encoding"/>
+          <baseUri>file:/D:/Mule-Study/part-time-project/WebServiceDemo/src/main/resources/wsdl/HelloService.wsdl</baseUri>
+        </schemas>
+        <namespaceManager>
+          <namespacePrefix class="tree-map"/>
+        </namespaceManager>
+      </org.mule.common.metadata.DefaultXmlMetaDataModel>
+    </entry>
+  </types>
+  <connectorName>Web_Service_Consumer</connectorName>
+</metadata__catalog__entry>

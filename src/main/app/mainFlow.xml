@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mule xmlns:tracking="http://www.mulesoft.org/schema/mule/ee/tracking" xmlns:dw="http://www.mulesoft.org/schema/mule/ee/dw" xmlns:ws="http://www.mulesoft.org/schema/mule/ws" xmlns:metadata="http://www.mulesoft.org/schema/mule/metadata" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:apikit="http://www.mulesoft.org/schema/mule/apikit" xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:spring="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/apikit http://www.mulesoft.org/schema/mule/apikit/current/mule-apikit.xsd
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+http://www.mulesoft.org/schema/mule/ws http://www.mulesoft.org/schema/mule/ws/current/mule-ws.xsd
+http://www.mulesoft.org/schema/mule/ee/dw http://www.mulesoft.org/schema/mule/ee/dw/current/dw.xsd
+http://www.mulesoft.org/schema/mule/ee/tracking http://www.mulesoft.org/schema/mule/ee/tracking/current/mule-tracking-ee.xsd">
+   
+    <apikit:config name="sadikwebservice-config" raml="sadikwebservice.raml" consoleEnabled="false" doc:name="Router"/>
+    
+    <flow name="flow-main">
+        <http:listener config-ref="sadikwebservice-httpListenerConfig" path="/api/*" doc:name="HTTP" allowedMethods="GET"/>
+        <apikit:router config-ref="sadikwebservice-config" doc:name="APIkit Router"/>
+        <exception-strategy ref="globalChoiceException" doc:name="Reference Exception Strategy"/> 
+    </flow>
+    <flow name="flow-console">
+        <http:listener config-ref="sadikwebservice-httpListenerConfig" path="/console/*" doc:name="HTTP"/>
+        <apikit:console config-ref="sadikwebservice-config" doc:name="APIkit Console"/>
+    </flow>
+    <flow name="get:/getHello:niit-config">
+        <flow-ref name="webService_flow" doc:name="Flow Reference"/>
+
+    </flow>
+   
+    <sub-flow name="webService_flow">
+        <dw:transform-message doc:name="Transform Message" metadata:id="6f100bd3-7927-4984-8b02-692a8aa09e47">
+            <dw:set-payload><![CDATA[%dw 1.0
+%output application/xml
+---
+{
+	firstName: inboundProperties."http.query.params".user
+}]]></dw:set-payload>
+        </dw:transform-message>
+        <ws:consumer config-ref="Web_Service_Consumer" operation="sayHello" doc:name="Web Service Consumer"/>
+
+        <dw:transform-message doc:name="Transform Message" metadata:id="0aadb585-e6e6-41fa-80c1-137bdf9a92e6">
+            <dw:input-payload doc:sample="sample_data\greeting.xml"/>
+            <dw:set-payload><![CDATA[%dw 1.0
+%output application/json
+---
+{
+	 "greeting" : payload.greeting
+}]]></dw:set-payload>
+        </dw:transform-message>
+    </sub-flow>
+</mule>
